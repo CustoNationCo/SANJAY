@@ -4,7 +4,7 @@ labels: ["Type: Bug", "Status: Triage", "Slicing Error :collision:"]
 body:
 - type: markdown
   attributes:
-    value: |
+    value: |      
        ### Project File
        **⚠️ Before you continue, we need your project file to troubleshoot a slicing crash.**
        It contains the printer and settings we need for troubleshooting. 
@@ -68,4 +68,3 @@ body:
     description: You can add the zip file and additional information that is relevant to the issue in the comments below.
   validations:
     required: true
-

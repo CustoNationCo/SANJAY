@@ -11,7 +11,7 @@ from conan.tools.env import VirtualRunEnv, Environment, VirtualBuildEnv
 from conan.tools.scm import Version
 from conan.errors import ConanInvalidConfiguration, ConanException
 
-required_conan_version = ">=1.58.0 <2.0.0"
+required_conan_version = ">=1.64.0 <2.0.0"
 
 
 class CuraConan(ConanFile):
@@ -176,7 +176,7 @@ class CuraConan(ConanFile):
         inner = "'" if self.settings.os == "Windows" else '"'
         buffer = StringIO()
         with venv_vars.apply():
-            self.run(f"""python -c {outer}import pkg_resources;  print({inner};{inner}.join([(s.key+{inner},{inner}+ s.version) for s in pkg_resources.working_set])){outer}""",
+            self.run(f"""python -c {outer}import importlib.metadata;  print({inner};{inner}.join([(package.metadata[{inner}Name{inner}]+{inner},{inner}+ package.metadata[{inner}Version{inner}]) for package in importlib.metadata.distributions()])){outer}""",
                           env = "conanrun",
                           output = buffer)
 
@@ -351,7 +351,7 @@ class CuraConan(ConanFile):
         if self._internal:
             for req in self.conan_data["requirements_internal"]:
                 self.requires(req)
-        self.requires("cpython/3.10.4@ultimaker/stable")
+        self.requires("cpython/3.12.2")
         self.requires("clipper/6.4.2@ultimaker/stable")
         self.requires("openssl/3.2.0")
         self.requires("protobuf/3.21.12")

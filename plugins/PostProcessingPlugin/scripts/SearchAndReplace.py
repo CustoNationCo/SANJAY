@@ -1,8 +1,7 @@
 # Copyright (c) 2017 Ghostkeeper
 # The PostProcessingPlugin is released under the terms of the LGPLv3 or higher.
 # Altered by GregValiant (Greg Foresi) February, 2023.
-#    Added an option to replace the 'First Instance Only'
-#    Added option to limit the Search to a layer range.
+#    Added option for a layer search with a Start Layer and an End layer.
 #    Added 'Ignore StartUp G-code' and 'Ignore Ending G-code' options
 
 import re
@@ -31,7 +30,7 @@ class SearchAndReplace(Script):
                 "replace":
                 {
                     "label": "Replace with:",
-                    "description": "The 'Search For' text will get replaced by this text.  For Multi-Line insertions use the newline character 'backslash plus n' as the delimiter. Also for multi-line insertions the last character must be 'backslash plus n'",
+                    "description": "The 'Search For' text will get replaced by this text.  For Multi-Line insertions use the newline character 'backslash plus n' as the delimiter. If your Search term ends with a '\n' remember to add '\n' to the end of the Replace term.",
                     "type": "str",
                     "default_value": ""
                 },
